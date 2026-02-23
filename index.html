@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charu ❤️ Sunny</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:black;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* Stars */
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+background-image:radial-gradient(white 1px, transparent 1px);
+background-size:50px 50px;
+animation:moveStars 20s linear infinite;
+z-index:0;
+}
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:1000px 1000px;}
+}
+
+/* Secret Page */
+#secret{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:2;
+position:relative;
+}
+
+input{
+padding:12px;
+border-radius:20px;
+border:none;
+text-align:center;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+font-size:16px;
+}
+
+/* Main */
+#main{
+display:none;
+padding:20px;
+position:relative;
+z-index:2;
+}
+
+.slideshow img{
+width:220px;
+height:260px;
+border-radius:15px;
+object-fit:cover;
+display:none;
+margin-top:20px;
+}
+
+/* Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 6s linear infinite;
+}
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-800px);opacity:0;}
+}
+
+#loveLetter{
+display:none;
+max-width:700px;
+margin:30px auto;
+white-space:pre-line;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- Secret Password -->
+<div id="secret">
+<h2>Enter Secret Code 🔐</h2>
+<input type="password" id="pass" placeholder="Enter Code">
+<button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<!-- Main Content -->
+<div id="main">
+
+<audio autoplay loop>
+<source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<h1>Happy Birthday My Queen Charu 👑❤️</h1>
+<h3>Forever Yours, Sunny 💕</h3>
+
+<p>
+Charu, you are the brightest star in my universe.
+Every moment with you is magical.
+On your birthday, I promise to love you forever. 💖
+</p>
+
+<button onclick="proposal()">💍 Click For Special Surprise</button>
+
+<div class="slideshow">
+<img src="https://i.pinimg.com/736x/ae/55/03/ae5503264fabf15d2bbce7a449a903aa.jpg" class="slides">
+<img src="https://i.pinimg.com/736x/ae/55/03/ae5503264fabf15d2bbce7a449a903aa.jpg" class="slides">
+<img src="https://i.pinimg.com/736x/ae/55/03/ae5503264fabf15d2bbce7a449a903aa.jpg" class="slides">
+</div>
+
+<p onclick="openLetter()" style="margin-top:40px;cursor:pointer;color:#ffb6c1;">
+✨ For My Eyes Only ❤️
+</p>
+
+<div id="loveLetter">
+<h2>My Secret Letter To You 💌</h2>
+<p id="typingText"></p>
+</div>
+
+</div>
+
+<script>
+
+/* Unlock */
+function unlock(){
+var password=document.getElementById("pass").value;
+if(password.toLowerCase()=="charu"){
+document.getElementById("secret").style.display="none";
+document.getElementById("main").style.display="block";
+startSlideshow();
+startHearts();
+}else{
+alert("Wrong Code 😜");
+}
+}
+
+/* Slideshow */
+function startSlideshow(){
+var slideIndex=0;
+var slides=document.getElementsByClassName("slides");
+setInterval(function(){
+for(var i=0;i<slides.length;i++){
+slides[i].style.display="none";
+}
+slideIndex++;
+if(slideIndex>slides.length){slideIndex=1;}
+slides[slideIndex-1].style.display="block";
+},2000);
+}
+
+/* Proposal */
+function proposal(){
+alert("Charu ❤️ Will You Be Mine Forever? 💍\nI Love You - Sunny");
+}
+
+/* Hearts */
+function startHearts(){
+setInterval(function(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},400);
+}
+
+/* Love Letter Typing */
+function openLetter(){
+document.getElementById("loveLetter").style.display="block";
+typeWriter();
+}
+
+var i=0;
+var text="Charu ❤️\n\nFrom the moment you came into my life, everything changed. You are my happiness, my peace, my forever.\n\nEvery memory with you is special because YOU are special.\n\nOn your birthday, I promise to always stand beside you and love you forever.\n\nLove Always,\nSunny ❤️";
+
+function typeWriter(){
+if(i<text.length){
+document.getElementById("typingText").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeWriter,40);
+}
+}
+
+</script>
+
+</body>
+</html>
